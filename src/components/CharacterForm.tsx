@@ -22,7 +22,7 @@ export default function CharacterForm() {
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         console.log(character);
-        alert("The character was saved!")
+        alert("The character was saved!");
     }
 
 
