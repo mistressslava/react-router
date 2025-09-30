@@ -5,11 +5,9 @@ import CharacterList from "./components/CharacterList.tsx";
 import Navbar from "./components/Navbar.tsx";
 import IdCharacter from "./components/IdCharacter.tsx";
 import ChangeIdURL from "./components/ChangeIdURL.tsx";
-import {useState} from "react";
+import NewCharacter from "./components/NewCharacter.tsx";
 
 export default function App() {
-
-    const [customId, setCustomId] = useState("");
 
     return (
         <>
@@ -18,7 +16,8 @@ export default function App() {
                 <Route path={"/"} element={<Greeting/>}/>
                 <Route path={"/characters"} element={<CharacterList/>}/>
                 <Route path={"/characters/:id"} element={<IdCharacter/>}/>
-                <Route path={"/character/id"} element={<ChangeIdURL customId={customId} setCustomId={setCustomId}/>}/>
+                <Route path={"/character/id"} element={<ChangeIdURL/>}/>
+                <Route path={"/character/creating-new-character"} element={<NewCharacter/>}/>
             </Routes>
         </>
     );

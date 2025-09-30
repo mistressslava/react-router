@@ -10,6 +10,7 @@ export default function Navbar() {
                 <button className="nav-btn" onClick={() => nav("/")}>Main page</button>
                 <button className="nav-btn" onClick={() => nav("/characters")}>Your data</button>
                 <button className="nav-btn" onClick={() => nav("/character/id")}>Find character by ID</button>
+                <button className={"nav-btn"} onClick={() => nav("/character/creating-new-character")}>Create new character</button>
             </nav>
         </header>
     )
