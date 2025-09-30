@@ -5,7 +5,7 @@ import CharacterList from "./components/CharacterList.tsx";
 import Navbar from "./components/Navbar.tsx";
 import IdCharacter from "./components/IdCharacter.tsx";
 import ChangeIdURL from "./components/ChangeIdURL.tsx";
-import NewCharacter from "./components/NewCharacter.tsx";
+import CharacterForm from "./components/CharacterForm.tsx";
 
 export default function App() {
 
@@ -17,7 +17,7 @@ export default function App() {
                 <Route path={"/characters"} element={<CharacterList/>}/>
                 <Route path={"/characters/:id"} element={<IdCharacter/>}/>
                 <Route path={"/character/id"} element={<ChangeIdURL/>}/>
-                <Route path={"/character/creating-new-character"} element={<NewCharacter/>}/>
+                <Route path={"/character/creating-new-character"} element={<CharacterForm/>}/>
             </Routes>
         </>
     );
