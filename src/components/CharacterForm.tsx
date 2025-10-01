@@ -1,4 +1,5 @@
 import {FormEvent, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 type CharacterFormProps = {
     name: string;
@@ -10,6 +11,8 @@ type CharacterFormProps = {
 
 
 export default function CharacterForm() {
+
+    const navigate = useNavigate();
 
     const [character, setCharacter] = useState<CharacterFormProps>({
         name: "",
@@ -23,6 +26,10 @@ export default function CharacterForm() {
         event.preventDefault();
         console.log(character);
         alert("The character was saved!");
+    }
+
+    function handleClick() {
+        navigate("/characters")
     }
 
 
@@ -76,7 +83,7 @@ export default function CharacterForm() {
                         />
                     </label>
                 </div>
-                <button type={"submit"}>Send</button>
+                <button type={"submit"} onClick={handleClick}>Send</button>
             </form>
         </>
     )
