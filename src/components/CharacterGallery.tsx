@@ -2,57 +2,37 @@ import {Character} from "../types/RickAndMortyCharacter.ts";
 import CharacterCard from "./CharacterCard.tsx";
 import "./CharacterGallery.css";
 import axios from "axios";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
-type CharacterGalleryProps = {
+/*type CharacterGalleryProps = {
     characters: Character[];
-}
+}*/
 
-export default function CharacterGallery(props: Readonly<CharacterGalleryProps>) {
-    const cards = props.characters.map((character) => <CharacterCard key={character.name} character={character}/>);
+export default function CharacterGallery() {
 
-    const [chars, setChars] = useState<Character[]>([{
-        id: 0,
-        name: "",
-        status: "",
-        species: "",
-        type: "",
-        gender: "",
-        origin: {
-            name: "", url: ""
+    const [chars, setChars] = useState<Character[]>([]);
 
-        },
-        location: {
-            name: "", url: ""
-        },
-        image: "",
-        episode: [],
-        url: "",
-        created: ""
-    }]);
+    const [page, setPage] = useState(1);
+    const [maxPage, setMaxPage] = useState(1)
 
-    async function loadAllCharacters() {
-        axios.get("https://rickandmortyapi.com/api/character")
-            .then((response) => setChars(response.data.results))
-            .catch((error) => console.log(error));
-    }
+    useEffect(() => {
+        axios.get(`https://rickandmortyapi.com/api/character?page=${page}`)
+            .then((response) => {
+                setChars(response.data.results);
+                setMaxPage(response.data.info.pages)})
+            .catch((e) => console.error(e))
+    }, [page]);
+
 
     return (
         <>
             <div className="character-gallery">
-                {cards}
+                {chars.map((character) => <CharacterCard key={character.id} character={character}/>)}
             </div>
-
             <div>
-                {chars.map((char) => (
-                    <p key={char.id}>{char.name}</p>
-                ))}
+                <button disabled={page === 1} onClick={() => setPage(page - 1)}>To the previous page</button>
+                <button disabled={page === maxPage} onClick={() => setPage(page + 1)}>To the next page</button>
             </div>
-
-
-            <br/>
-            <button onClick={loadAllCharacters}>Click me!</button>
-
         </>
     );
 }

@@ -23,3 +23,12 @@ export type Location = {
     name: string,
     url: string
 }
+
+export type newCharacter = {
+    id: number;
+    name: string;
+    status: string;
+    species: string;
+    gender: string;
+    image: string;
+}
